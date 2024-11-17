@@ -1,0 +1,10 @@
+{
+    "scripts": {
+      "start": "node backend/dist/server.js", 
+      "build": "npm run build --workspace frontend",
+      "dev": "concurrently \"npm run server\" \"npm run client\"",
+      "server": "tsc && node backend/dist/server.js",
+      "client": "cd frontend && npm start"
+    }
+  }
+  

@@ -3,9 +3,9 @@
   "private": true,
   "scripts": { 
     "build": "cd frontend && npm install && npm run build",
-    "start": "tsc backend/dist/server.ts",  
+    "start": "tsc backend/src/server.ts",  
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "tsc && node backend/dist/server.ts",
+    "server": "tsc && node backend/src/server.ts",
     "client": "cd frontend && npm start",
     "debug": "cd frontend && npm install && npm run build"
   },

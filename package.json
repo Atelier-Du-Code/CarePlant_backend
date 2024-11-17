@@ -5,16 +5,13 @@
     "frontend",
     "backend"
   ],
-  "scripts": {
-   "scripts": {
+  "scripts": { 
   "build": "cd frontend && npm ci && npm run build",
   "start": "node backend/dist/server.js",
   "dev": "concurrently \"npm run server\" \"npm run client\"",
   "server": "tsc && node backend/dist/server.js",
   "client": "cd frontend && npm start",
    "debug": "cd frontend && npm install && npm run build"
-
-}
   },
   "dependencies": {
     "concurrently": "^7.0.0"

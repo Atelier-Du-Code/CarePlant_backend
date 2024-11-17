@@ -1,10 +1,18 @@
 {
-    "scripts": {
-      "start": "node backend/dist/server.js", 
-      "build": "npm run build frontend",
-      "dev": "concurrently \"npm run server\" \"npm run client\"",
-      "server": "tsc && node backend/dist/server.js",
-      "client": "cd frontend && npm start"
-    }
+  "name": "CarePlant",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "start": "node backend/dist/server.js", 
+    "build": "npm run build frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "tsc && node backend/dist/server.js",
+    "client": "cd frontend && npm start"
+  },
+  "dependencies": {
+    "concurrently": "^7.0.0"   
   }
-  
+}

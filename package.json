@@ -11,7 +11,9 @@
   "start": "node backend/dist/server.js",
   "dev": "concurrently \"npm run server\" \"npm run client\"",
   "server": "tsc && node backend/dist/server.js",
-  "client": "cd frontend && npm start"
+  "client": "cd frontend && npm start",
+   "debug": "cd frontend && npm install && npm run build"
+
 }
   },
   "dependencies": {

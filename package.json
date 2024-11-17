@@ -6,11 +6,13 @@
     "backend"
   ],
   "scripts": {
-    "start": "npm run start --workspace=backend", 
-    "build": "npm run build --workspace=frontend",
-    "dev": "concurrently \"npm run dev --workspace=backend\" \"npm run dev --workspace=frontend\"",
-    "server": "tsc && node backend/dist/server.js",
-    "client": "npm start --workspace=frontend"
+   "scripts": {
+  "build": "cd frontend && npm run build",
+  "start": "node backend/dist/server.js",
+  "dev": "concurrently \"npm run server\" \"npm run client\"",
+  "server": "tsc && node backend/dist/server.js",
+  "client": "cd frontend && npm start"
+}
   },
   "dependencies": {
     "concurrently": "^7.0.0"

@@ -14,7 +14,7 @@ const path = require('path');
 dotenv.config();
 
 const app: Application = express();
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware pour parser les requêtes
 app.use(bodyParser.json());

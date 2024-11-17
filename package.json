@@ -5,16 +5,12 @@
     "frontend",
     "backend"
   ],
-
-   "scripts": {
-  "build": "cd frontend && npm run build",
-  "start": "node backend/dist/server.js",
-  "dev": "concurrently \"npm run server\" \"npm run client\"",
-  "server": "tsc && node backend/dist/server.js",
-  "client": "cd frontend && npm start"
-  
-
-
+  "scripts": {
+    "build": "npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend",
+    "start": "node backend/dist/server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "npm run build --prefix backend && node backend/dist/server.js",
+    "client": "cd frontend && npm start"
   },
   "dependencies": {
     "concurrently": "^7.0.0"

@@ -1,9 +1,14 @@
-import express, { Application } from 'express';
-import bodyParser from 'body-parser';
+import { Application } from 'express';
+
 import mongoose from 'mongoose';
 import routes from './routes/index';
-import dotenv from 'dotenv';
-import path from 'path';
+
+
+const express = require('express');
+const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
+const path = require('path');
+
 //import errorMiddleware from './middleware/errorMiddleware';
 
 dotenv.config();

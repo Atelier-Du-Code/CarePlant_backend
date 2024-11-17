@@ -2,7 +2,7 @@
   "name": "CarePlant",
   "private": true,
   "scripts": { 
-  "build": "cd frontend && npm run build",
+  "build": "cd frontend && npm install && npm run build",
   "start": "node backend/dist/server.js",
   "dev": "concurrently \"npm run server\" \"npm run client\"",
   "server": "tsc && node backend/dist/server.js",

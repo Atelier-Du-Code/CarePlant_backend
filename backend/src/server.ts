@@ -9,7 +9,7 @@ import path from 'path';
 dotenv.config();
 
 const app: Application = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 1000;
 
 // Middleware pour parser les requêtes
 app.use(bodyParser.json());

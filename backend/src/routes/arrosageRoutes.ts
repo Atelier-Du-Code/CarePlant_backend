@@ -1,10 +1,9 @@
-// arrosageRoutes.ts
-import { Router } from 'express';
-import arrosageController from '../controllers/arrosageController'; 
+import  { Router, Request, Response } from 'express';
+import { getAllArrosages, getArrosageById } from '../controllers/arrosageController';
 
 const router = Router();
 
-router.get('/', arrosageController.getAllArrosages);
-router.get('/:id', arrosageController.getArrosageById);
+router.get('/', getAllArrosages);
+router.get('/:id', getArrosageById);
 
 export default router;

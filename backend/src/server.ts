@@ -1,13 +1,9 @@
-import { Application } from 'express';
+import express, { Application } from 'express';
 
+import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import routes from './routes/index';
-
-
-const express = require('express');
-const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
-const path = require('path');
+import dotenv from 'dotenv';
 
 //import errorMiddleware from './middleware/errorMiddleware';
 
@@ -30,6 +26,7 @@ mongoose.connect(process.env.MONGODB || '', {
   console.error('Failed to connect to MongoDB:', error.message);
 });
 
+/*
 // Serve React app for production
 if (process.env.NODE_ENV === 'PROD') {
   app.use(express.static(path.join(__dirname, '../frontend/build')));
@@ -38,10 +35,11 @@ if (process.env.NODE_ENV === 'PROD') {
     res.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'));
   });
 }
-
+*/
 
 // Routes
 app.use('/api', routes);
+
 //app.use(errorMiddleware);
 
 app.listen(PORT, () => {

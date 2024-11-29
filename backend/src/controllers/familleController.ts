@@ -57,7 +57,6 @@ export const getFamilleById = async (req: Request, res: Response): Promise<void>
     }
 }
 
-
 const familleController = {
     getAllFamille,
     getFamilleById

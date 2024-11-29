@@ -1,5 +1,5 @@
 import { getAllArrosages, getArrosageById } from '../../controllers/arrosageController';
-import ArrosageModel from '../../models/arrosageModel'; // Mock du modèle
+import ArrosageModel from '../../models/arrosageModel';
 
 // Mock du modèle Mongoose
 jest.mock('../../models/arrosageModel', () => ({
@@ -41,6 +41,7 @@ describe('Tests unitaires - ArrosageController', () => {
 
     //Evaluation des résultats
     result.forEach((arrosage: any) => {
+
         expect(arrosage).toHaveProperty('frequence');
         expect(arrosage.frequence).toBeGreaterThanOrEqual(1);
         expect(arrosage.frequence).toBeLessThanOrEqual(31);
@@ -52,7 +53,7 @@ describe('Tests unitaires - ArrosageController', () => {
   })
 
 
-  it('GetAllArrossages - Devrait envoyer un message car réponse vide', async () => {
+  it('GetAllArrossages - Devrait envoyer une erreur 404 car réponse vide', async () => {
     (ArrosageModel.find as jest.Mock).mockResolvedValue([]);
 
     const req = {} as any;
@@ -78,11 +79,28 @@ describe('Tests unitaires - ArrosageController', () => {
     expect(res.json).toHaveBeenCalledWith({ message: 'Erreur lors de la récupération des arrosages' });
 
   });
+
+
+
+  it('GetArrosageById - Devrait retourner une erreur si la connexion à la base de données échoue', async () => {
+    
+    const mongoNetworkError = new Error('MongoNetworkError') as any;
+    mongoNetworkError.name = 'MongoNetworkError';
+    (ArrosageModel.find as jest.Mock).mockRejectedValue(mongoNetworkError);
+
+    const req = {} as any;
+    const res = { status: jest.fn().mockReturnThis(), json: jest.fn() } as any;
+
+    await getAllArrosages(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ message: 'Erreur de connexion à la base de données' });
+  });
  
 
 
   it('GetArrosageById - Devrait récupéré un arrosage', async () => {
-    // Arrange
+    
     (ArrosageModel.findById as jest.Mock).mockResolvedValue([{ id: 1, name: 'Arrosage 1' }]);
 
     const req = { params: { id: '1' } } as any;
@@ -94,8 +112,8 @@ describe('Tests unitaires - ArrosageController', () => {
     expect(res.json).toHaveBeenCalledWith([{ id: 1, name: 'Arrosage 1' }]);
   });
 
-  it('GetArrosageById - Devrait retourner une erreur si aucun arrosage trouvé', async () => {
-    // Arrange
+  it('GetArrosageById - Devrait retourner une erreur 404 car pas arrosage trouvé', async () => {
+    
     (ArrosageModel.findById as jest.Mock).mockResolvedValue(null);
 
     const req = { params: { id: 'invalid-id' } } as any;
@@ -123,24 +141,19 @@ describe('Tests unitaires - ArrosageController', () => {
   });
 
 
-it('GetArrosageById - Devrait retourner une erreur si la connexion à la base de données échoue', async () => {
+  it('GetArrosageById - Devrait retourner une erreur si la connexion à la base de données échoue', async () => {
+    
+    const mongoNetworkError = new Error('MongoNetworkError') as any;
+    mongoNetworkError.name = 'MongoNetworkError';
+    (ArrosageModel.findById as jest.Mock).mockRejectedValue(mongoNetworkError);
 
-  const mongoNetworkError = new Error('MongoNetworkError') as any;
-  mongoNetworkError.name = 'MongoNetworkError';
+    const req = { params: { id: '1' } } as any;
+    const res = { status: jest.fn().mockReturnThis(), json: jest.fn() } as any;
+
+    await getArrosageById(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ message: 'Erreur de connexion à la base de données' });
+  });
   
-  (ArrosageModel.findById as jest.Mock).mockRejectedValue(mongoNetworkError);
-
-  const req = { params: { id: '1' } } as any;
-  const res = { status: jest.fn().mockReturnThis(), json: jest.fn() } as any;
-
-  await getArrosageById(req, res);
-
-  expect(res.status).toHaveBeenCalledWith(500);
-  expect(res.json).toHaveBeenCalledWith({ message: 'Erreur de connexion à la base de données' });
-});
-  
- 
-
-  
-
 });

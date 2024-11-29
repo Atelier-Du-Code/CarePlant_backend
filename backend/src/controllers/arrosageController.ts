@@ -14,8 +14,16 @@ export const getAllArrosages = async (req: Request, res: Response): Promise<void
 
         res.status(200).json(arrosages);        
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Erreur lors de la récupération des arrosages' });
+        if (error instanceof Error) {
+            // Vérification de l'erreur MongoDB
+            if (error.name === 'MongoNetworkError') {
+                res.status(500).json({ message: 'Erreur de connexion à la base de données' });
+            } else {
+                res.status(500).json({ message: 'Erreur lors de la récupération des arrosages' });
+            }
+        } else {
+            res.status(500).json({ message: 'Erreur inconnue' });
+        }
     }
 };
 

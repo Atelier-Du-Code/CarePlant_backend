@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { getAllBesoins, getBesoinById } from '../../controllers/besoinController';
 import BesoinModel from '../../models/besoinModel'; 
-import BesoinsModel from '../../models/besoinModel';
+
 
 
 // Mock du modèle Mongoose
@@ -20,7 +20,7 @@ jest.mock('../../models/besoinModel', () => ({
         const mockArrosageId1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899822');
         const mockArrosageId2 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899824');
 
-        (BesoinsModel.find as jest.Mock).mockResolvedValue([
+        (BesoinModel.find as jest.Mock).mockResolvedValue([
             {
                 _id: mockIdBesoin1,
                 luminositeIntensite: 'vive',
@@ -79,7 +79,7 @@ jest.mock('../../models/besoinModel', () => ({
         const mockArrosageId1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899832');
        
 
-        (BesoinsModel.find as jest.Mock).mockResolvedValue([
+        (BesoinModel.find as jest.Mock).mockResolvedValue([
             {
                 _id: mockIdBesoin1,
                 luminositeIntensite: 'vive',
@@ -179,7 +179,7 @@ jest.mock('../../models/besoinModel', () => ({
 
 
 
-  it('GetBesoinById - Devrait récupéré un arrosage', async () => {
+  it('GetBesoinById - Devrait récupérer un besoin', async () => {
 
     const mockIdBesoin1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8894821');
     const mockIdBesoin2 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899823');

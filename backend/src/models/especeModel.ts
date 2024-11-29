@@ -1,7 +1,6 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface TypeEspece extends Document {
-    idEspece: mongoose.Types.ObjectId;
     nom: String;
     description: String;
     idGenre: mongoose.Types.ObjectId;
@@ -9,12 +8,6 @@ export interface TypeEspece extends Document {
 }
 
 const EspeceSchema: Schema<TypeEspece> = new Schema({
-    idEspece: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Espece',
-        required: true
-    },
-
     nom: {
         type: String,
         required: true,

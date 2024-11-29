@@ -9,9 +9,9 @@ jest.mock('../../models/especeModel', () => ({
     findById: jest.fn(),
   }));
   
-  describe('Tests unitaires - BesoinController', () => {
+  describe('Tests unitaires - EspeceController', () => {
 
-    it('GetAllEspeces - Devrait récupérer tous les besoins', async () => {
+    it('GetAllEspeces - Devrait récupérer toutes les espèces', async () => {
 
         const mockIdEspece1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8399821');
         const mockIdGenre1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8399821');
@@ -57,7 +57,7 @@ jest.mock('../../models/especeModel', () => ({
     });
 
 
-    it('GetAllEspeces - Devrait renvoyer les besoins avec les bonnes propriétés', async () => {
+    it('GetAllEspeces - Devrait renvoyer les espèces avec les bonnes propriétés', async () => {
 
        
         const mockIdEspece1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8399821');
@@ -138,11 +138,6 @@ jest.mock('../../models/especeModel', () => ({
     expect(res.json).toHaveBeenCalledWith({ message: 'Erreur de connexion à la base de données' });
   });
 
-
-
-
-
-
   it('GetEspeceById - Devrait récupérer une espèce', async () => {
 
     const mockIdEspece1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8399821');
@@ -169,11 +164,8 @@ jest.mock('../../models/especeModel', () => ({
         idGenre: mockIdGenre1,
     }]);
   });
-
-
- 
   
-  it('GetEspeceById - Devrait retourner une erreur 404 car pas de besoin trouvé', async () => {
+  it("GetEspeceById - Devrait retourner une erreur 404 car pas d'espèce trouvée", async () => {
     
     (EspeceModel.findById as jest.Mock).mockResolvedValue(null);
 

@@ -1,6 +1,7 @@
 import { Application } from 'express';
 
 import mongoose from 'mongoose';
+import routes from './routes/index';
 
 
 
@@ -24,25 +25,32 @@ app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect(process.env.MONGODB || '', { 
 })
 .then(() => {
+
   console.log('MongoDB connected successfully');
+ 
 })
 .catch((error) => {
   console.error('Failed to connect to MongoDB:', error.message);
 });
 
+
+
+
 // Serve React app for production
 if (process.env.NODE_ENV === 'PROD') {
-  const frontendPath = path.join(__dirname, '../../frontend/build/index.html');
+  const frontendPath = path.join(__dirname, '../../frontend/build');
   app.use(express.static(frontendPath));
-
+  
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'));
+    console.log(`Request received for ${req.url}`);
+    res.sendFile(path.resolve(frontendPath, 'index.html'));
+ 
   });
 }
 
 
 // Routes
-
+app.use('/api', routes);
 //app.use(errorMiddleware);
 
 app.listen(PORT, () => {

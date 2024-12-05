@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
+const index_1 = __importDefault(require("./routes/index"));
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
@@ -28,10 +29,12 @@ if (process.env.NODE_ENV === 'PROD') {
     const frontendPath = path.join(__dirname, '../../frontend/build');
     app.use(express.static(frontendPath));
     app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'));
+        console.log(`Request received for ${req.url}`);
+        res.sendFile(path.resolve(frontendPath, 'index.html'));
     });
 }
 // Routes
+app.use('/api', index_1.default);
 //app.use(errorMiddleware);
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

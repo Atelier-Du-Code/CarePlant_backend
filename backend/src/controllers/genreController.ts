@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import GenreModel from '../models/genreModel';
 
 
-// Récupérer toutes les familles
+// Récupérer tous les genres
 export const getAllGenres = async (req: Request, res: Response): Promise<void> => {
     try {
         const genres = await GenreModel.find();

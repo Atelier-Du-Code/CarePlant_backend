@@ -48,6 +48,7 @@ app.use('/api', routes);
 
   app.get('*', (req, res) => {
     console.log(`Request received for ${req.url}`);
+    console.log(`port: ${PORT}`);
     res.sendFile(path.resolve(frontendPath, 'index.html'));
  
   });

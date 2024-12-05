@@ -1,7 +1,7 @@
 import { Application } from 'express';
 
 import mongoose from 'mongoose';
-import routes from './routes/index';
+
 
 
 const express = require('express');
@@ -41,7 +41,7 @@ if (process.env.NODE_ENV === 'PROD') {
 
 
 // Routes
-app.use('/api', routes);
+
 //app.use(errorMiddleware);
 
 app.listen(PORT, () => {

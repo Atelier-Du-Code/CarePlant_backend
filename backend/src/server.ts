@@ -41,6 +41,11 @@ if (process.env.NODE_ENV === 'PROD') {
   const frontendPath = path.join(__dirname, '../../frontend/build');
   app.use(express.static(frontendPath));
   
+  
+// Routes
+app.use('/api', routes);
+//app.use(errorMiddleware);
+
   app.get('*', (req, res) => {
     console.log(`Request received for ${req.url}`);
     res.sendFile(path.resolve(frontendPath, 'index.html'));

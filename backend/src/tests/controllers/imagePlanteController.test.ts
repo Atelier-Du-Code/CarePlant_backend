@@ -22,7 +22,7 @@ jest.mock('../../models/imagesPlanteModel', () => ({
 
        
 
-        (ImagesPlanteModel.findById as jest.Mock).mockResolvedValue([
+        (ImagesPlanteModel.find as jest.Mock).mockResolvedValue([
             {
                 idImagePlante: mockIdImage1,
                 idPlante: mockIdPlante1,
@@ -37,21 +37,15 @@ jest.mock('../../models/imagesPlanteModel', () => ({
             }
             
         ])
+
         const req = { params: { idPlante: mockIdPlante1 } } as any;
 
         const res = { status: jest.fn().mockReturnThis(), json: jest.fn() } as any;
-
-
-        console.log("Appel de la méthode du controller");
+      
         await getAllImagesForOnePlante(req, res);
-        console.log("méthode appelée");
-
-        console.log("Vérifie que mockIdPlante1 est bien utilisé");
-        expect(ImagesPlanteModel.find).toHaveBeenCalledWith({ idPlante: mockIdPlante1.toString() });
-        console.log("OK");
-        console.log("Envoie du code http");
-        expect(res.status).toHaveBeenCalledWith(200);
-        console.log("Le code est OK");
+      
+        expect(ImagesPlanteModel.find).toHaveBeenCalledWith({ idPlante: mockIdPlante1 });
+        expect(res.status).toHaveBeenCalledWith(200);      
         expect(res.json).toHaveBeenCalledWith([
 
             {
@@ -68,6 +62,41 @@ jest.mock('../../models/imagesPlanteModel', () => ({
             }
         ]);
     });
+
+    it("getOneImagesForOnePlante - Devrait récupérer une image d'une plante", async () => {
+
+      const mockIdPlante1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899821');
+      const mockIdImage1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899822');
+      
+
+      (ImagesPlanteModel.find as jest.Mock).mockResolvedValue([
+          {
+              idImagePlante: mockIdImage1,
+              idPlante: mockIdPlante1,
+              url: 'http://example.com/image1.jpg',
+              description: 'Première image de la plante',
+          }
+      ])
+
+      const req = { params: { idPlante: mockIdPlante1, idImagePlante: mockIdImage1  } } as any;
+
+      const res = { status: jest.fn().mockReturnThis(), json: jest.fn() } as any;
+    
+      await getOneImageForOnePlante(req, res);
+    
+      expect(ImagesPlanteModel.find).toHaveBeenCalledWith({ idPlante: mockIdPlante1, idImagePlante: mockIdImage1  });
+      expect(res.status).toHaveBeenCalledWith(200);      
+      expect(res.json).toHaveBeenCalledWith([
+
+          {
+            idImagePlante: mockIdImage1,
+            idPlante: mockIdPlante1,
+            url: 'http://example.com/image1.jpg',
+            description: 'Première image de la plante',
+          }
+         
+      ]);
+  });
 
 
    /*  it('GetAllBesoins - Devrait renvoyer les besoins avec les bonnes propriétés', async () => {

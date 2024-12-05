@@ -7,7 +7,7 @@ export const getAllImagesForOnePlante = async (req: Request, res: Response): Pro
     try {
 
         const { idPlante } = req.params;
-        const images = await ImagesPlanteModel.find({ jdsncjkdnlcnsjd});
+        const images = await ImagesPlanteModel.find({idPlante});
 
         if( !images )
         {
@@ -37,7 +37,7 @@ export const getOneImageForOnePlante = async (req: Request, res: Response): Prom
         
        
         const { idPlante, idImagePlante } = req.params;
-        const image = await ImagesPlanteModel.find({ idPlante, idImagePlante }).exec();
+        const image = await ImagesPlanteModel.find({ idPlante, idImagePlante });
 
         if (!image) {
             res.status(404).json({ message: 'Image de plante non trouvée' });

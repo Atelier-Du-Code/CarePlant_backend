@@ -14,7 +14,7 @@ const path = require('path');
 dotenv.config();
 
 const app: Application = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 // Middleware pour parser les requêtes
 app.use(bodyParser.json());
@@ -32,7 +32,8 @@ mongoose.connect(process.env.MONGODB || '', {
 
 // Serve React app for production
 if (process.env.NODE_ENV === 'PROD') {
-  app.use(express.static(path.join(__dirname, '../frontend/build')));
+  const frontendPath = path.join(__dirname, '../../frontend/build');
+  app.use(express.static(frontendPath));
 
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'));

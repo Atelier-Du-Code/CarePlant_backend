@@ -15,7 +15,9 @@ const path = require('path');
 dotenv.config();
 
 const app: Application = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 10000;
+
+
 
 // Middleware pour parser les requêtes
 app.use(bodyParser.json());
@@ -47,7 +49,11 @@ app.use('/api', routes);
 //app.use(errorMiddleware);
 
   app.get('*', (req, res) => {
+    console.log('Démarrage du serveur...');
     console.log(`Request received for ${req.url}`);
+    console.log('Env variables:', process.env); 
+
+
     console.log(`port: ${PORT}`);
     res.sendFile(path.resolve(frontendPath, 'index.html'));
  

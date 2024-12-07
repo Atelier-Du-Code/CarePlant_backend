@@ -14,8 +14,7 @@ export const getAllArrosages = async (req: Request, res: Response): Promise<void
 
         res.status(200).json(arrosages);        
     } catch (error) {
-        if (error instanceof Error) {
-            // Vérification de l'erreur MongoDB
+        if (error instanceof Error) {           
             if (error.name === 'MongoNetworkError') {
                 res.status(500).json({ message: 'Erreur de connexion à la base de données' });
             } else {

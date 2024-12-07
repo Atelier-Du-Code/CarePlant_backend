@@ -7,9 +7,9 @@ export const getAllImagesForOnePlante = async (req: Request, res: Response): Pro
     try {
 
         const { idPlante } = req.params;
-        const images = await ImagesPlanteModel.find({idPlante});
+        const images = await ImagesPlanteModel.find({ idPlante });
 
-        if( !images )
+        if( !images || images.length == 0 )
         {
             res.status(404).json({ message: "Aucune image trouvée pour cette plante"});
             return;
@@ -18,14 +18,15 @@ export const getAllImagesForOnePlante = async (req: Request, res: Response): Pro
         res.status(200).json(images);        
     } catch (error:unknown) {
 
-        if (error instanceof Error) { 
+        if (error instanceof Error) {
+          
             if (error.name === 'MongoNetworkError') {
                 res.status(500).json({ message: 'Erreur de connexion à la base de données' });
             } else {
                 res.status(500).json({ message: 'Erreur lors de la récupération des images de la plante' });
             }
         } else {
-            res.status(500).json({ message: 'Erreur inconnue lors de la récupération des images de la plante' });
+            res.status(500).json({ message: 'Erreur inconnue' });
         }
     }
 };
@@ -37,7 +38,7 @@ export const getOneImageForOnePlante = async (req: Request, res: Response): Prom
         
        
         const { idPlante, idImagePlante } = req.params;
-        const image = await ImagesPlanteModel.find({ idPlante, idImagePlante });
+        const image = await ImagesPlanteModel.findById({ idPlante, idImagePlante });
 
         if (!image) {
             res.status(404).json({ message: 'Image de plante non trouvée' });

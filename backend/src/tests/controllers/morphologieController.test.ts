@@ -142,7 +142,6 @@ describe('Tests unitaires - morphologieController', () => {
     });
   })
 
-
   it('getAllMorphologies - Devrait envoyer une erreur 404 car réponse vide', async () => {
     (morphologieModel.find as jest.Mock).mockResolvedValue([]);
 
@@ -169,8 +168,6 @@ describe('Tests unitaires - morphologieController', () => {
     expect(res.json).toHaveBeenCalledWith({ message: 'Erreur lors de la récupération des morphologies' });
 
   });
-
-
 
   it('getMorphologieById - Devrait récupéré une morphologie', async () => {
    
@@ -222,10 +219,6 @@ describe('Tests unitaires - morphologieController', () => {
     ]);
   });
 
-
-
-
-
   it('getMorphologieById - Devrait retourner une erreur 404 car pas de morphologie trouvée', async () => {
     
     (morphologieModel.findById as jest.Mock).mockResolvedValue(null);
@@ -238,8 +231,6 @@ describe('Tests unitaires - morphologieController', () => {
     expect(res.status).toHaveBeenCalledWith(404);
     expect(res.json).toHaveBeenCalledWith({ message: 'Morphologie non trouvée' });
   });
-
- 
 
   it('getMorphologieById - Devrait retourner une erreur en cas de problème de base de données', async () => {
   
@@ -256,8 +247,6 @@ describe('Tests unitaires - morphologieController', () => {
     expect(res.json).toHaveBeenCalledWith({ message: 'Erreur lors de la récupération de la morphologie' });
 
   });
-
-
   
   it('getMorphologieById - Devrait retourner une erreur si la connexion à la base de données échoue', async () => {
     

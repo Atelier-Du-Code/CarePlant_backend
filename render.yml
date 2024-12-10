@@ -12,7 +12,7 @@ services:
     name: careplant-frontend
     env: docker
     dockerfilePath: ./frontend/Dockerfile  # Chemin vers le Dockerfile du frontend
-    port: 10000  # Port d'écoute pour le frontend
+    port: 80  # Port d'écoute pour le frontend
     buildCommand: npm install && npm run build
     startCommand: npm run start
     plan: free

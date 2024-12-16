@@ -10,7 +10,7 @@ RUN cat package.json
 
 RUN npm install 
 
-RUN npm run buildFront && ls
+RUN npm run build && ls
 
 FROM nginx:alpine
 

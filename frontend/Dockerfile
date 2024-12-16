@@ -6,9 +6,6 @@ COPY package.json package-lock.json ./
 
 RUN npm install
 
-COPY ./src .
-COPY ./public .
-
 WORKDIR /frontend/build
 
 RUN npm run build && ls -l /frontend/build

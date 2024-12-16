@@ -1,17 +1,16 @@
 FROM node:18-alpine as build
 
-WORKDIR /frontend
+WORKDIR /frontend/build
 
 COPY package.json package-lock.json ./
 
-RUN ls
+RUN npm install
 
-RUN cat package.json
+COPY . .
 
-RUN npm run build
+RUN npm run build && ls -l /frontend
 
-
-
+FROM nginx:alpine
 
 COPY --from=build /frontend/build /usr/share/nginx/html
 

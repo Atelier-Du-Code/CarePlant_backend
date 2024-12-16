@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build && ls -l /frontend/build
+RUN npm run build && ls -l /frontend
 
 FROM nginx:alpine
 

@@ -12,7 +12,7 @@ RUN npm run build && ls -l /frontend/build
 
 FROM nginx:alpine
 
-COPY --from=build /frontend/build /usr/share/nginx/html
+COPY --from=build /frontend /usr/share/nginx/html
 
 EXPOSE 80
 

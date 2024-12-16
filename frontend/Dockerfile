@@ -4,9 +4,11 @@ WORKDIR /frontend
 
 COPY package.json package-lock.json ./
 
-RUN ls 
+RUN ls
 
-RUN npm install && ls 
+RUN cat package.json
+
+RUN npm install 
 
 RUN npm run build && ls
 

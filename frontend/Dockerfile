@@ -6,8 +6,6 @@ COPY package.json package-lock.json ./
 
 RUN npm install
 
-WORKDIR /frontend/build
-
 RUN npm run build && ls -l /frontend/build
 
 FROM nginx:alpine

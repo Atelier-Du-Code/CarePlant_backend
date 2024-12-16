@@ -8,11 +8,10 @@ RUN ls
 
 RUN cat package.json
 
-RUN npm install 
+RUN npm run build
 
-RUN npm run build && ls
 
-FROM nginx:alpine
+
 
 COPY --from=build /frontend/build /usr/share/nginx/html
 

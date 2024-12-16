@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
+RUN chmod -R 755 /frontend
+
 RUN npm run build && ls -l /frontend
 
 FROM nginx:alpine

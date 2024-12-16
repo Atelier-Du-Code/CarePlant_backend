@@ -2,7 +2,7 @@ services:
   - type: web
     name: careplant-backend
     env: docker
-    dockerfilePath: ./backend/Dockerfile  # Chemin vers le Dockerfile du backend
+    dockerfilePath: ./backend/Dockerfile 
     port: 10000  # Port d'écoute pour le backend
     buildCommand: npm install && npm run build
     startCommand: npm start

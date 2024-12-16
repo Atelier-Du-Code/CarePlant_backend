@@ -4,7 +4,6 @@ services:
     env: docker
     dockerfilePath: ./backend/Dockerfile 
     buildCommand: npm install && npm run build
-    startCommand: npm start
     plan: free
 
   - type: web
@@ -12,5 +11,4 @@ services:
     env: docker
     dockerfilePath: ./frontend/Dockerfile
     buildCommand: npm install && npm run build
-    startCommand: npm run start
     plan: free

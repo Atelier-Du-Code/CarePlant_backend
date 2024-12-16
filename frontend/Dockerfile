@@ -4,13 +4,13 @@ WORKDIR /frontend
 
 COPY package.json package-lock.json 
 
-RUN npm install && ls /frontend
+RUN npm install && ls 
 
-RUN npm run build && ls -l /frontend
+RUN npm run build && ls
 
 FROM nginx:alpine
 
-COPY --from=build /frontend/build /usr/share/nginx/html
+COPY --from=build /frontend /usr/share/nginx/html
 
 EXPOSE 80
 

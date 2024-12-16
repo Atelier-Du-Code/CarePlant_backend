@@ -19,4 +19,4 @@ services:
       - "80:80"
     environment:
       - NODE_ENV=production
-      - PORT=10000
+      

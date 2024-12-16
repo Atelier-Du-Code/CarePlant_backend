@@ -2,11 +2,13 @@
   "name": "CarePlant",
   "private": true,
   "scripts": { 
-    "build": "npm install && npm run build",
-    "start": "tsc backend/src/server.ts",  
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "tsc && node backend/src/server.ts",
-    "client": "cd frontend && npm start",
+    "build": "npm run buildFrontend && npm run buildBackend",
+    "buildFrontend": "cd frontend && npm install && npm run build",
+    "buildBackend": "cd backend && npm install && npm run build",
+    "start": "npm run startBackend",
+    "startFrontend": "cd frontend && npm start",
+    "startBackend": "cd backend && npm run server",
+    "dev": "concurrently \"npm run startBackend\" \"npm run startFrontend\"",
     "debug": "cd frontend && npm install && npm run build"
   },
   "dependencies": {

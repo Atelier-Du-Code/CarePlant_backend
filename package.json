@@ -2,7 +2,7 @@
   "name": "CarePlant",
   "private": true,
   "scripts": { 
-    "buildFront": "react-scripts build",
+    "buildFront": "npm run build",
     "start": "tsc backend/src/server.ts",  
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "tsc && node backend/src/server.ts",

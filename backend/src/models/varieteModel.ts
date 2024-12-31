@@ -1,7 +1,6 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface TypeVariete extends Document {
-    idVariete: mongoose.Types.ObjectId;
     nom: String;
     description: String;
     caracteristiques: String[];
@@ -10,12 +9,6 @@ export interface TypeVariete extends Document {
 }
 
 const VarieteSchema: Schema<TypeVariete> = new Schema({
-    idVariete: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Variete',
-        required: true
-    },
-
     nom: {
         type: String,
         required: true,

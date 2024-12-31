@@ -17,18 +17,25 @@ jest.mock('../../models/imagesPlanteModel', () => ({
         const mockIdImage1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899822');
         const mockIdImage2 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899824');
 
+        const mockIdParasite1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899825');
+        const mockIdParasite2 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899826');
+
         (ImagesPlanteModel.find as jest.Mock).mockResolvedValue([
             {
                 idImagePlante: mockIdImage1,
                 idPlante: mockIdPlante1,
                 url: 'http://example.com/image1.jpg',
                 description: 'Première image de la plante',
+                sante: 'bonne',
+                idParasite: mockIdParasite1,
             },
             {
                 idImagePlante: mockIdImage2,
                 idPlante: mockIdPlante1,
                 url: 'http://example.com/image2.jpg',
                 description: 'Deuxième image de la plante',
+                sante: 'bonne',
+                idParasite: mockIdParasite2,
             }            
         ])
 
@@ -45,12 +52,16 @@ jest.mock('../../models/imagesPlanteModel', () => ({
                 idPlante: mockIdPlante1,
                 url: 'http://example.com/image1.jpg',
                 description: 'Première image de la plante',
+                sante: 'bonne',
+                idParasite: mockIdParasite1,
             },
             {
                 idImagePlante: mockIdImage2,
                 idPlante: mockIdPlante1,
                 url: 'http://example.com/image2.jpg',
                 description: 'Deuxième image de la plante',
+                sante: 'bonne',
+                idParasite: mockIdParasite2,
             }
         ]);
     });
@@ -58,8 +69,10 @@ jest.mock('../../models/imagesPlanteModel', () => ({
 
     it('getAllImagesForOnePlante - Devrait renvoyer les imagesPlante avec les bonnes propriétés', async () => {
 
-      const mockIdPlante1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899821');     
-      const mockIdImage1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899822');
+        const mockIdPlante1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899821');     
+        const mockIdImage1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899822');
+        const mockIdParasite1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899825');
+
     
         (ImagesPlanteModel.find as jest.Mock).mockResolvedValue([
           {
@@ -67,6 +80,8 @@ jest.mock('../../models/imagesPlanteModel', () => ({
             idPlante: mockIdPlante1,
             url: 'http://example.com/image1.jpg',
             description: 'Première image de la plante',
+            sante: 'bonne',
+            idParasite: mockIdParasite1,
         },
         ]);
     
@@ -76,15 +91,24 @@ jest.mock('../../models/imagesPlanteModel', () => ({
         await getAllImagesForOnePlante(req, res); 
                 
         const result = res.json.mock.calls[0][0];
-        console.log(result);
      
         result.forEach((imageDePlante: any) => {
-          expect(mongoose.Types.ObjectId.isValid(imageDePlante.idImagePlante)).toBe(true);
-          expect(mongoose.Types.ObjectId.isValid(imageDePlante.idPlante)).toBe(true);
           expect(imageDePlante).toHaveProperty('idImagePlante');
+          expect(mongoose.Types.ObjectId.isValid(imageDePlante.idImagePlante)).toBe(true);
+
           expect(imageDePlante).toHaveProperty('idPlante');
+          expect(mongoose.Types.ObjectId.isValid(imageDePlante.idPlante)).toBe(true);
+          
+         
           expect(imageDePlante).toHaveProperty('url');
           expect(imageDePlante).toHaveProperty('description');
+
+          expect(imageDePlante).toHaveProperty('sante');
+          expect(['bonne', 'mauvaise']).toContain(imageDePlante.sante);
+
+          expect(imageDePlante).toHaveProperty('idParasite');
+          expect(mongoose.Types.ObjectId.isValid(imageDePlante.idPlante)).toBe(true);
+          
         });        
     });
 
@@ -138,6 +162,7 @@ jest.mock('../../models/imagesPlanteModel', () => ({
 
     const mockIdPlante1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899821');
     const mockIdImage1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899822');
+    const mockIdParasite1 = new mongoose.Types.ObjectId('6749cbed0f2936d7a8899825');
 
     (ImagesPlanteModel.findById as jest.Mock).mockResolvedValue([
       {
@@ -145,6 +170,8 @@ jest.mock('../../models/imagesPlanteModel', () => ({
         idPlante: mockIdPlante1,
         url: 'http://example.com/image1.jpg',
         description: 'Première image de la plante',
+        sante: 'bonne',
+        idParasite: mockIdParasite1,
       }            
     ])
 
@@ -159,7 +186,25 @@ jest.mock('../../models/imagesPlanteModel', () => ({
       idPlante: mockIdPlante1,
       url: 'http://example.com/image1.jpg',
       description: 'Première image de la plante',
+      sante: 'bonne',
+      idParasite: mockIdParasite1,
+
     }]);
+
+    const imagePlante = res.json.mock.calls[0][0][0];
+
+    expect(imagePlante).toHaveProperty('idImagePlante');
+    expect(imagePlante).toHaveProperty('idPlante');
+    expect(imagePlante).toHaveProperty('url');
+    expect(imagePlante).toHaveProperty('description');
+
+    expect(imagePlante).toHaveProperty('sante');
+    expect(['bonne', 'mauvaise']).toContain(imagePlante.sante);
+
+    expect(imagePlante).toHaveProperty('idParasite');
+    expect(mongoose.Types.ObjectId.isValid(imagePlante.idPlante)).toBe(true);
+
+    
   });
 
   it("getOneImageForOnePlante - Devrait retourner une erreur 404 car pas d'image trouvée pour ces id de plante et d'image ", async () => {

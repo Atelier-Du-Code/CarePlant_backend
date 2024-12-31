@@ -5,6 +5,8 @@ export interface TypeImagePlante extends Document {
     idPlante: mongoose.Types.ObjectId;
     url: String;
     description: String;
+    sante: String;
+    idParasite: mongoose.Types.ObjectId;
  
 }
 
@@ -33,6 +35,16 @@ const ImagePlanteSchema: Schema<TypeImagePlante> = new Schema({
         trim: true,
         lowercase: true,       
     },
+    sante: { 
+        type: String, 
+        enum: ['Bonne', 'mauvaise'], 
+        required: true 
+    },
+    idParasite: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Parasite',
+        required: true
+    }]
 });
 
 const ImagePlanteModel: Model<TypeImagePlante> = mongoose.model<TypeImagePlante>('ImagePlante', ImagePlanteSchema);

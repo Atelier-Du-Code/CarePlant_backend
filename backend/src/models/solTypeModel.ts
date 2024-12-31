@@ -1,23 +1,12 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface TypeSolType extends Document {
-    idSolType: mongoose.Types.ObjectId;
-
-
     nom: String;
     description: String;
     caracteristiques: String[];
-    idEspece: mongoose.Types.ObjectId;
- 
 }
 
 const SolTypeSchema: Schema<TypeSolType> = new Schema({
-    idSolType: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'SolType',
-        required: true
-    },
-
     nom: {
         type: String,
         required: true,

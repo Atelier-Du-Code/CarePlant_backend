@@ -65,19 +65,20 @@ describe('Tests unitaires - morphologieController', () => {
       couleur: 'vert',
       tailleMax: 100,
       croissance: 'rapide',
-  },
-  {
-    _id: mockId2,
-    idPlante: mockIdPlante2,
-  
-    formeGenerale: 'buisson',
-    formeFeuille: 'elliptique',
+      },
+      {
+        _id: mockId2,
+        idPlante: mockIdPlante2,
+      
+        formeGenerale: 'buisson',
+        formeFeuille: 'elliptique',
 
-    texture: 'rugueux',
-    couleur: 'vert',
-    tailleMax: 100,
-    croissance: 'rapide',
-  }       ]);
+        texture: 'rugueux',
+        couleur: 'vert',
+        tailleMax: 100,
+        croissance: 'rapide',
+      }       
+    ]);
   });
 
   it('getAllMorphologies - Devrait renvoyer les morphologies avec les bonnes propriétés', async () => {

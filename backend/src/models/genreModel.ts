@@ -28,6 +28,8 @@ const GenreSchema: Schema<TypeGenre> = new Schema({
         lowercase: true,       
     },
 
+    //TODO : idFamilles doit être un tableau d'id
+
     idFamille: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Famille',

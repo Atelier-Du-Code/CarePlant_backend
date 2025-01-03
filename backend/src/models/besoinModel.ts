@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface TypeBesoins extends Document {
-    luminositeIntensite: 'vive'|'lumineuse'|'mi-ombre'|'ombre';
+    exposition: 'vive'|'lumineuse'|'mi-ombre'|'ombre';
     luminositeType: 'directe'|'indirecte';
     tauxHumidite: 'forte'|'moyenne'|'faible';
     arrosage: mongoose.Types.ObjectId[];
@@ -12,7 +12,7 @@ export interface TypeBesoins extends Document {
 
 const BesoinsSchema: Schema<TypeBesoins> = new Schema({
 
-    luminositeIntensite: { 
+    exposition: { 
         type: String, 
         enum: ['vive', 'lumineuse', 'mi-ombre', 'ombre'], 
         required: true 

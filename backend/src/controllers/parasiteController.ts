@@ -1,11 +1,10 @@
 import { Request, Response } from 'express';
-import ParasisteModel from '../models/parasiteModel';
 import ParasiteModel from '../models/parasiteModel';
 
 // Récupérer tous les Parasites
 export const getAllParasites = async (req: Request, res: Response): Promise<void> => {
     try {
-        const parasites = await ParasisteModel.find();
+        const parasites = await ParasiteModel.find();
 
         if( parasites.length == 0)
         {

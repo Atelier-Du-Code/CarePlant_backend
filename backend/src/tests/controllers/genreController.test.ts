@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { getAllGenres, getGenreById } from '../../controllers/genreController';
-import genreModel from '../../models/genreModel'; 
-import GenreModel from '../../models/genreModel';
+import genreModel from '../../models/herbier/taxonomie/genreModel'; 
+import GenreModel from '../../models/herbier/taxonomie/genreModel';
 
 
 // Mock du modèle Mongoose

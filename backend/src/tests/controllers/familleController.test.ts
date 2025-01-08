@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { getAllFamille, getFamilleById } from '../../controllers/familleController';
-import FamilleModel from '../../models/familleModel'; 
+import FamilleModel from '../../models/herbier/taxonomie/familleModel'; 
 
 
 // Mock du modèle Mongoose

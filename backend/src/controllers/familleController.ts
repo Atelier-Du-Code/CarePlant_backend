@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import FamilleModel from '../models/familleModel';
+import FamilleModel from '../models/herbier/taxonomie/familleModel';
 
 
 // Récupérer toutes les familles

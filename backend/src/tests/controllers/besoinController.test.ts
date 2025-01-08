@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { getAllBesoins, getBesoinById } from '../../controllers/besoinController';
-import BesoinModel from '../../models/besoinModel'; 
+import BesoinModel from '../../models/herbier/plante/besoin/besoinModel'; 
 
 
 

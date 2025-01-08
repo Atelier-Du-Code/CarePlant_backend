@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { getAllImagesForOnePlante, getOneImageForOnePlante } from '../../controllers/imagesPlanteController';
-import ImagesPlanteModel from '../../models/imagesPlanteModel'; 
+import ImagesPlanteModel from '../../models/herbier/plante/imagesPlanteModel'; 
 
 jest.mock('../../models/imagesPlanteModel', () => ({
     find: jest.fn(),

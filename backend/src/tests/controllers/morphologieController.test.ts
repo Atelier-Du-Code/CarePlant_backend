@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { getAllMorphologies, getMorphologieById } from '../../controllers/morphologieController';
-import morphologieModel from '../../models/morphologieModel';
+import morphologieModel from '../../models/herbier/caracteristiques/morphologie/morphologieModel';
 
 // Mock du modèle Mongoose
 jest.mock('../../models/morphologieModel', () => ({

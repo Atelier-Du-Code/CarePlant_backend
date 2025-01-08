@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import ParasiteModel from '../models/parasiteModel';
+import ParasiteModel from '../models/herbier/plante/parasiteModel';
 
 // Récupérer tous les Parasites
 export const getAllParasites = async (req: Request, res: Response): Promise<void> => {

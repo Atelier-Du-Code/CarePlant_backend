@@ -1,21 +1,21 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface TypeMorphologie extends Document {
-    formesGenerales: mongoose.Types.ObjectId;
-    formesFeuilles: mongoose.Types.ObjectId; 
+    formeGenerale: mongoose.Types.ObjectId;
+    formeFeuille: mongoose.Types.ObjectId; 
     textures: mongoose.Types.ObjectId[];       
     couleurs: mongoose.Types.ObjectId[];     
     taillesMax: number;                    
-    croissances: mongoose.Types.ObjectId;       
+    croissance: mongoose.Types.ObjectId;       
 }
 
 const MorphologieSchema: Schema<TypeMorphologie> = new Schema({
-    formesGenerales: { 
+    formeGenerale: { 
         type: Schema.Types.ObjectId, 
         ref: "FormeGenerale", 
         required: true 
     },
-    formesFeuilles: { 
+    formeFeuille: { 
         type: Schema.Types.ObjectId, 
         ref: "FormeFeuille", 
         required: true 
@@ -34,7 +34,7 @@ const MorphologieSchema: Schema<TypeMorphologie> = new Schema({
         type: Number, 
         required: true 
     },
-    croissances: {  
+    croissance: {  
         type: Schema.Types.ObjectId, 
         ref: "Croissance", 
         required: true 

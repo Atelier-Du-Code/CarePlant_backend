@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import solTypeModel from '../models/solTypeModel';
+import solTypeModel from '../models/herbier/caracteristiques/solTypeModel';
 
 // Récupérer tous les solTypes
 export const getAllSolTypes = async (req: Request, res: Response): Promise<void> => {

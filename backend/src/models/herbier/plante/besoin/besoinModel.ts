@@ -2,7 +2,7 @@ import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface TypeBesoins extends Document {
     exposition: mongoose.Types.ObjectId[];
-    typeLumiere:  mongoose.Types.ObjectId[];
+    diffusionLumiere:  mongoose.Types.ObjectId[];
     tauxHumidite: mongoose.Types.ObjectId;
     arrosages: mongoose.Types.ObjectId[];
     tempMin: number;
@@ -17,7 +17,7 @@ const BesoinsSchema: Schema<TypeBesoins> = new Schema({
         ref: "Exposition",
         required: true 
     }],
-    typeLumiere: [{ 
+    diffusionLumiere: [{ 
         type: Schema.Types.ObjectId, 
         ref: "TypeLumiere",
         required: true 

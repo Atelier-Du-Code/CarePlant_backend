@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import OrigineModel from '../models/origineModel';
+import OrigineModel from '../models/herbier/caracteristiques/origineModel';
 
 // Récupérer tous les Arrosages
 export const getAllOrigines = async (req: Request, res: Response): Promise<void> => {

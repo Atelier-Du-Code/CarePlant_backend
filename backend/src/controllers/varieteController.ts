@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import VarieteModel from '../models/varieteModel';
+import VarieteModel from '../models/herbier/taxonomie/varieteModel';
 
 // Récupérer toutes les variétés
 export const getAllVarietes = async (req: Request, res: Response): Promise<void> => {

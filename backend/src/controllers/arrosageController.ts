@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import ArrosageModel from '../models/corrigés/arrosageModel';
+import ArrosageModel from '../models/herbier/plante/besoin/arrosage/arrosageModel';
 
 // Récupérer tous les Arrosages
 export const getAllArrosages = async (req: Request, res: Response): Promise<void> => {

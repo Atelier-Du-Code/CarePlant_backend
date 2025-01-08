@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import MorphologieModel from '../models/morphologieModel';
+import MorphologieModel from '../models/herbier/caracteristiques/morphologie/morphologieModel';
 
 // Récupérer tous les Arrosages
 export const getAllMorphologies = async (req: Request, res: Response): Promise<void> => {

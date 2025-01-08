@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { getAllEspeces, getEspeceById } from '../../controllers/especeController';
-import EspeceModel from '../../models/especeModel'; 
+import EspeceModel from '../../models/herbier/taxonomie/especeModel'; 
 
 
 // Mock du modèle Mongoose

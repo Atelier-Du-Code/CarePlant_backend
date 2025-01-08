@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import EspeceModel from '../models/especeModel';
+import EspeceModel from '../models/herbier/taxonomie/especeModel';
 
 
 // Récupérer toutes les espèces

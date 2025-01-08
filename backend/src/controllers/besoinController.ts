@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import BesoinModel from '../models/besoinModel';
+import BesoinModel from '../models/herbier/plante/besoin/besoinModel';
 
 
 // Récupérer tous les Besoins

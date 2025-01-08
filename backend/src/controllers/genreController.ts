@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import GenreModel from '../models/genreModel';
+import GenreModel from '../models/herbier/taxonomie/genreModel';
 
 
 // Récupérer tous les genres

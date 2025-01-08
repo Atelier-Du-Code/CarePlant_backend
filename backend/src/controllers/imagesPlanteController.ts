@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import ImagesPlanteModel from '../models/imagesPlanteModel';
+import ImagesPlanteModel from '../models/herbier/plante/imagesPlanteModel';
 
 
 // Récupérer tous les images d'une plante

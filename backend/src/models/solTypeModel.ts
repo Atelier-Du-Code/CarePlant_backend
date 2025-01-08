@@ -1,30 +1,22 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface TypeSolType extends Document {
-    nom: String;
-    description: String;
-    caracteristiques: String[];
+    type: string;
+    description: string;    
 }
 
 const SolTypeSchema: Schema<TypeSolType> = new Schema({
-    nom: {
+    type: {
         type: String,
         required: true,
         trim: true,
-        lowercase: true,       
+             
     },
     description: {
         type: String,
         required: true,
-        trim: true,
-        lowercase: true,       
+        trim: true,     
     },
-
-    caracteristiques: [{
-        type: String,
-        required: true,
-        trim: true,
-    }],
 });
 
 const SolTypeModel: Model<TypeSolType> = mongoose.model<TypeSolType>('SolType', SolTypeSchema);

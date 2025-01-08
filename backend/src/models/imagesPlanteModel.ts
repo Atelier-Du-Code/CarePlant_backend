@@ -1,49 +1,39 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface TypeImagePlante extends Document {
-    idImagePlante: mongoose.Types.ObjectId;
-    idPlante: mongoose.Types.ObjectId;
-    url: String;
-    description: String;
-    sante: String;
-    idParasite: mongoose.Types.ObjectId;
+    plante: mongoose.Types.ObjectId;
+    url: string;
+    description: string;
+    sante: boolean;
+    parasite: mongoose.Types.ObjectId[];
  
 }
 
-const ImagePlanteSchema: Schema<TypeImagePlante> = new Schema({
-    idImagePlante: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'ImagePlante',
-        required: true
-    },
+const ImagePlanteSchema: Schema<TypeImagePlante> = new Schema({   
 
-    idPlante: {
+    plante: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Plante',
         required: true
     },
-
     url: {
         type: String,
         required: true,
-        trim: true,
-        lowercase: true,       
+        trim: true,        
     },
     description: {
         type: String,
         required: true,
-        trim: true,
-        lowercase: true,       
+        trim: true,         
     },
     sante: { 
-        type: String, 
-        enum: ['Bonne', 'mauvaise'], 
+        type: Boolean, 
         required: true 
     },
-    idParasite: [{
+    parasite: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Parasite',
-        required: true
+        required: false
     }]
 });
 

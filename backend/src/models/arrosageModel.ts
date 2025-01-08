@@ -1,20 +1,19 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface TypeArrosage extends Document {   
-    frequence: 1|2|3|7|14|21|28|31;
-    saison: 'printemps'|'été'|'automne'|'hiver';
+    frequence: mongoose.Types.ObjectId;
+    saison: mongoose.Types.ObjectId;
 }
 
 const ArrosageSchema: Schema<TypeArrosage> = new Schema({   
     frequence: { 
-        type: Number, 
-        enum: [1, 2, 3, 7, 14, 21, 28, 31], 
+        type: Schema.Types.ObjectId, 
+        ref: "Arrosage",
         required: true 
     },
-
     saison: { 
-        type: String, 
-        enum: ['printemps', 'été', 'automne', 'hiver'], 
+        type: Schema.Types.ObjectId, 
+        ref: "Saison",
         required: true 
     },
 });

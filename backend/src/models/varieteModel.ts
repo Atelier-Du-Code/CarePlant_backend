@@ -1,40 +1,29 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface TypeVariete extends Document {
-    nom: String;
-    description: String;
-    caracteristiques: String[];
-    idEspece: mongoose.Types.ObjectId;
- 
+    nom: string;
+    espece: mongoose.Types.ObjectId;
+    description: string;
 }
 
 const VarieteSchema: Schema<TypeVariete> = new Schema({
-    nom: {
-        type: String,
+    nom: { 
+        type: String, 
         required: true,
         trim: true,
-        lowercase: true,       
     },
-    description: {
-        type: String,
-        required: true,
-        trim: true,
-        lowercase: true,       
+    espece: { 
+        type: Schema.Types.ObjectId, 
+        ref: "Espece", 
+        required: true 
     },
-
-    caracteristiques: [{
-        type: String,
-        required: true,
+    description: { 
+        type: String, 
+        required: false,
         trim: true,
-    }],
-
-    idEspece: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Espece',
-        required: true
     },
 });
 
-const VarieteModel: Model<TypeVariete> = mongoose.model<TypeVariete>('Genre', VarieteSchema);
+const VarieteModel: Model<TypeVariete> = mongoose.model<TypeVariete>('Variete', VarieteSchema);
 
 export default VarieteModel;

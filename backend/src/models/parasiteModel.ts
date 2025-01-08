@@ -3,7 +3,6 @@ import mongoose, { Document, Schema, Model } from 'mongoose';
 export interface TypeParasite extends Document {
     nom: String;
     description: String;
-    idGenre: mongoose.Types.ObjectId;
     url: String,
  
 }
@@ -29,6 +28,6 @@ const ParasiteSchema: Schema<TypeParasite> = new Schema({
     }]
 });
 
-const ParasiteModel: Model<TypeParasite> = mongoose.model<TypeParasite>('Genre', ParasiteSchema);
+const ParasiteModel: Model<TypeParasite> = mongoose.model<TypeParasite>('Parasite', ParasiteSchema);
 
 export default ParasiteModel;

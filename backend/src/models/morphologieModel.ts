@@ -1,53 +1,44 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface TypeMorphologie extends Document {
-    idPlante: mongoose.Types.ObjectId;
-    formeGenerale: 'buisson'|'arbre'|'rampante'|'en cascade'|'verticale'|'compacte'|'grimpante';
-    texture: 'lisse'|'rugueux'|'duveteux'|'scireux'|'velouté';
-    couleur: 'vert'|'panaché vert/blanc'|'gris-argenté'|'bleu-argenté'|'vert-argenté'|'marbré'|'rougeâtre'|'bordeaux';
-    formeFeuille: 'lancéolée'|'elliptique'|'ovale'|'spathulée'|'corde'|'ronde'|'circulaire'|'oblongue'|'triangulaire'|'falciforme';
-    tailleMax: number;
-    croissance: 'lente' | 'moyenne' | 'rapide'; 
+    formesGenerales: mongoose.Types.ObjectId;
+    formesFeuilles: mongoose.Types.ObjectId; 
+    textures: mongoose.Types.ObjectId[];       
+    couleurs: mongoose.Types.ObjectId[];     
+    taillesMax: number;                    
+    croissances: mongoose.Types.ObjectId;       
 }
 
 const MorphologieSchema: Schema<TypeMorphologie> = new Schema({
-    idPlante: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Plante',
-        required: true
-    },
-    formeGenerale: { 
-        type: String, 
-        enum: ['buisson', 'arbre', 'rampante', 'en cascade', 'verticale', 'compacte', 'grimpante'], 
+    formesGenerales: { 
+        type: Schema.Types.ObjectId, 
+        ref: "FormeGenerale", 
         required: true 
     },
-
-    formeFeuille: { 
-        type: String, 
-        enum: ['lancéolée', 'elliptique', 'ovale', 'spathulée', 'corde', 'ronde', 'circulaire', 'oblongue', 'triangulaire', 'falciforme'], 
+    formesFeuilles: { 
+        type: Schema.Types.ObjectId, 
+        ref: "FormeFeuille", 
         required: true 
     },
- 
-    texture: {
-        type: String, 
-        enum: ['lisse', 'rugueux', 'duveteux', 'scireux', 'velouté'], 
+    textures: [{ 
+        type: Schema.Types.ObjectId, 
+        ref: "Texture", 
         required: true 
-    },
-
-    couleur: {
-        type: String, 
-        enum: ['vert', 'panaché vert/blanc', 'gris-argenté', 'bleu-argenté', 'vert-argenté', 'marbré', 'rougeâtre', 'bordeaux'], 
+    }],
+    couleurs: [{ 
+        type: Schema.Types.ObjectId, 
+        ref: "Couleur", 
         required: true 
-    },
-    tailleMax: { 
+    }],
+    taillesMax: { 
         type: Number, 
         required: true 
     },
-    croissance: { 
-        type: String, 
-        enum: ['lente', 'moyenne', 'rapide'], 
+    croissances: {  
+        type: Schema.Types.ObjectId, 
+        ref: "Croissance", 
         required: true 
-    }
+    },
 });
 
 const MorphologieModel: Model<TypeMorphologie> = mongoose.model<TypeMorphologie>('Morphologie', MorphologieSchema);

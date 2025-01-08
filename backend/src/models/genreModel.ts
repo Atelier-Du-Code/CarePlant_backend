@@ -1,39 +1,28 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface TypeGenre extends Document {
-    idGenre: mongoose.Types.ObjectId;
-    nom: String;
-    description: String;
-    idFamille: mongoose.Types.ObjectId;
+    nom: string;
+    famille: mongoose.Types.ObjectId;
+    description: string;
  
 }
 
 const GenreSchema: Schema<TypeGenre> = new Schema({
-    idGenre: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Genre',
-        required: true
-    },
-
-    nom: {
-        type: String,
+    nom: { 
+        type: String, 
         required: true,
         trim: true,
-        lowercase: true,       
     },
-    description: {
-        type: String,
+    famille: { 
+        type: Schema.Types.ObjectId, 
+        ref: "Famille", 
         required: true,
         trim: true,
-        lowercase: true,       
     },
-
-    //TODO : idFamilles doit être un tableau d'id
-
-    idFamille: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Famille',
-        required: true
+    description: { 
+        type: String,
+        required: false,
+        trim: true,
     },
 });
 

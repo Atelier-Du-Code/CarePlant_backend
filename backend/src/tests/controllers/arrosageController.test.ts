@@ -1,5 +1,5 @@
 import { getAllArrosages, getArrosageById } from '../../controllers/arrosageController';
-import ArrosageModel from '../../models/arrosageModel';
+import ArrosageModel from '../../models/corrigés/arrosageModel';
 
 // Mock du modèle Mongoose
 jest.mock('../../models/arrosageModel', () => ({

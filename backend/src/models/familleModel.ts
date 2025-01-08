@@ -10,14 +10,12 @@ const FamilleSchema: Schema<TypeFamille> = new Schema({
     nom: {
         type: String,
         required: true,
-        trim: true,
-        lowercase: true,       
+        trim: true,       
     },
     description: {
         type: String,
-        required: true,
+        required: false,
         trim: true,
-        lowercase: true,       
     },
 });
 

@@ -1,56 +1,48 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
 export interface TypeBesoins extends Document {
-    exposition: 'vive'|'lumineuse'|'mi-ombre'|'ombre';
-    luminositeType: 'directe'|'indirecte';
-    tauxHumidite: 'forte'|'moyenne'|'faible';
-    arrosage: mongoose.Types.ObjectId[];
+    exposition: mongoose.Types.ObjectId[];
+    typeLumiere:  mongoose.Types.ObjectId[];
+    tauxHumidite: mongoose.Types.ObjectId;
+    arrosages: mongoose.Types.ObjectId[];
     tempMin: number;
     tempMax: number;
-    astuces: String[];
+    astuces: mongoose.Types.ObjectId[];
 }
 
 const BesoinsSchema: Schema<TypeBesoins> = new Schema({
 
-    exposition: { 
-        type: String, 
-        enum: ['vive', 'lumineuse', 'mi-ombre', 'ombre'], 
+    exposition: [{ 
+        type: Schema.Types.ObjectId, 
+        ref: "Exposition",
         required: true 
-    },
-
-    luminositeType: { 
-        type: String, 
-        enum: ['directe', 'indirecte'], 
-        required: true 
-    },
-
-    tauxHumidite: { 
-        type: String, 
-        enum: ['forte', 'moyenne', 'faible'],
-        required: true 
-    },
-
-    arrosage: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Arrosage',
-        required: true
     }],
-    
+    typeLumiere: [{ 
+        type: Schema.Types.ObjectId, 
+        ref: "TypeLumiere",
+        required: true 
+    }],
+    tauxHumidite: { 
+        type: Schema.Types.ObjectId, 
+        ref: "TauxHumidite",
+        required: true 
+    },
+    arrosages: [{ 
+        type: Schema.Types.ObjectId, 
+        ref: "Arrosage" 
+    }],
     tempMin: { 
         type: Number, 
         required: true 
     },
-
     tempMax: { 
-        type: Number,
+        type: Number, 
         required: true 
     },
-
-    astuces: [{
-        type: String,
-        required: true,
-        trim: true,         
-    }]
+    astuces: [{ 
+        type: Schema.Types.ObjectId, 
+        ref: "Astuce" 
+    }],
 
 });
 

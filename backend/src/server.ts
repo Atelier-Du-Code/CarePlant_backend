@@ -9,6 +9,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const path = require('path');
+const cors = require('cors');
 
 //import errorMiddleware from './middleware/errorMiddleware';
 
@@ -60,6 +61,9 @@ mongoose.connect(process.env.MONGODB || '', {
 //   });
 // }
 
+app.use(cors({
+  origin: 'http://localhost:3000', // Permet uniquement les requêtes depuis localhost:3000
+}));
 
 // Routes
 app.use('/api', routes);

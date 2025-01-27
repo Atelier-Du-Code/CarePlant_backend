@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-# RUN chmod +x node_modules/.bin/tsc
+RUN chmod +x node_modules/.bin/tsc
 
 RUN npm run build
 

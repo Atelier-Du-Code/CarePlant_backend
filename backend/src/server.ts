@@ -38,27 +38,27 @@ mongoose.connect(process.env.MONGODB || '', {
 
 
 
-// Serve React app for production
-if (process.env.NODE_ENV === 'PROD') {
-  const frontendPath = path.join(__dirname, '../../frontend/build');
-  app.use(express.static(frontendPath));
+// // Serve React app for production
+// if (process.env.NODE_ENV === 'PROD') {
+//   const frontendPath = path.join(__dirname, '../../frontend/build');
+//   app.use(express.static(frontendPath));
   
   
-// Routes
-app.use('/api', routes);
-//app.use(errorMiddleware);
+// // Routes
+// app.use('/api', routes);
+// //app.use(errorMiddleware);
 
-  app.get('*', (req, res) => {
-    console.log('Démarrage du serveur...');
-    console.log(`Request received for ${req.url}`);
-    console.log('Env variables:', process.env); 
+//   app.get('*', (req, res) => {
+//     console.log('Démarrage du serveur...');
+//     console.log(`Request received for ${req.url}`);
+//     console.log('Env variables:', process.env); 
 
 
-    console.log(`port: ${PORT}`);
-    res.sendFile(path.resolve(frontendPath, 'index.html'));
+//     console.log(`port: ${PORT}`);
+//     res.sendFile(path.resolve(frontendPath, 'index.html'));
  
-  });
-}
+//   });
+// }
 
 
 // Routes

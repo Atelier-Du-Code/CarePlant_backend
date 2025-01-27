@@ -3,7 +3,7 @@ FROM node:18-alpine
 # Définir le répertoire de travail
 WORKDIR /backend
 
-COPY . .
+COPY /backend/ ./
 
 RUN ls -al /backend
 

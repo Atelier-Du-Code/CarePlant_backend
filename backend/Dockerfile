@@ -5,8 +5,11 @@ WORKDIR /backend
 
 COPY . .
 
+RUN ls -al
+
 RUN npm install
 
+RUN chmod +x node_modules/.bin/tsc
 
 RUN npm run build
 

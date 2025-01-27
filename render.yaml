@@ -4,6 +4,9 @@ services:
     env: docker
     dockerfilePath: ./backend/Dockerfile 
     buildCommand: npm install && npm run build
+      envVars:
+      - key: PORT
+        value: 10000
     plan: free
 
   - type: web
@@ -13,5 +16,5 @@ services:
     buildCommand: cd frontend && npm run build
     envVars:
       - key: PORT
-        value: 10000
+        value: 3000
     plan: free

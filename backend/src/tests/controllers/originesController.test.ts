@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { getAllOrigines, getOrigineById } from '../../controllers/origineController';
+import { getAllOrigines, getOrigineById } from '../../controllers/herbier/caracteristiques/origineController';
 import OrigineModel from '../../models/herbier/caracteristiques/origineModel';
 
 // Mock du modèle Mongoose

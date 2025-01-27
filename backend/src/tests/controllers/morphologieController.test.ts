@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { getAllMorphologies, getMorphologieById } from '../../controllers/morphologieController';
+import { getAllMorphologies, getMorphologieById } from '../../controllers/herbier/caracteristiques/morphologieController';
 import morphologieModel from '../../models/herbier/caracteristiques/morphologie/morphologieModel';
 
 // Mock du modèle Mongoose

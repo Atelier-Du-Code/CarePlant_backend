@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { getAllParasites, getParasiteById } from '../../controllers/parasiteController';
+import { getAllParasites, getParasiteById } from '../../controllers/herbier/plante/parasiteController';
 import ParasiteModel from '../../models/herbier/plante/parasiteModel';
 
 

@@ -1,4 +1,4 @@
-import { getAllArrosages, getArrosageById } from '../../controllers/arrosageController';
+import { getAllArrosages, getArrosageById } from '../../controllers/herbier/plante/besoin/arrosage/arrosageController';
 import ArrosageModel from '../../models/corrigés/arrosageModel';
 
 // Mock du modèle Mongoose

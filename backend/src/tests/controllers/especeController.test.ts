@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { getAllEspeces, getEspeceById } from '../../controllers/especeController';
+import { getAllEspeces, getEspeceById } from '../../controllers/herbier/taxonomie/especeController';
 import EspeceModel from '../../models/herbier/taxonomie/especeModel'; 
 
 

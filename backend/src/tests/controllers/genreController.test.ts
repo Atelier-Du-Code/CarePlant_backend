@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { getAllGenres, getGenreById } from '../../controllers/genreController';
+import { getAllGenres, getGenreById } from '../../controllers/herbier/taxonomie/genreController';
 import genreModel from '../../models/herbier/taxonomie/genreModel'; 
 import GenreModel from '../../models/herbier/taxonomie/genreModel';
 

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { getAllFamille, getFamilleById } from '../../controllers/familleController';
+import { getAllFamille, getFamilleById } from '../../controllers/herbier/taxonomie/familleController';
 import FamilleModel from '../../models/herbier/taxonomie/familleModel'; 
 
 

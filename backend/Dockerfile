@@ -9,6 +9,9 @@ COPY package.json package-lock.json ./
 # Installer les dépendances
 RUN npm install
 
+RUN ls -l node_modules/.bin/tsc
+
+
 # Vérification : afficher le contenu de node_modules/.bin
 RUN ls -l node_modules/.bin/
 

@@ -5,7 +5,8 @@ WORKDIR /backend
 
 COPY . .
 
-RUN ls -al
+RUN ls -al /backend
+
 
 RUN npm install
 

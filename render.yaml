@@ -11,4 +11,7 @@ services:
     env: docker
     dockerfilePath: ./frontend/Dockerfile
     buildCommand: cd frontend && npm run build
+    envVars:
+      - key: PORT
+        value: 10000
     plan: free

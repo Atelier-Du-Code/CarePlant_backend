@@ -8,6 +8,9 @@ RUN npm install
 
 COPY . .
 
+RUN npm install --legacy-peer-deps
+
+
 RUN chmod +x node_modules/.bin/tsc
 
 RUN npm run build

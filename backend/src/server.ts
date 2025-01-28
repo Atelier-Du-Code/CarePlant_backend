@@ -62,8 +62,11 @@ mongoose.connect(process.env.MONGODB || '', {
 // }
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://careplantfront.portefolio.avaulleemanonportefolio.fr/'] // Permet uniquement les requêtes depuis localhost:3000 et ton domaine
+  origin: ['http://localhost:3000', 'https://careplantfront.portefolio.avaulleemanonportefolio.fr'], // Liste d'origines autorisées
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Méthodes autorisées
+  allowedHeaders: ['Content-Type', 'Authorization'], // En-têtes autorisés
 }));
+
 
 // Routes
 app.use('/api', routes);

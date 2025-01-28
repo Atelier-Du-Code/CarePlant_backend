@@ -62,7 +62,7 @@ mongoose.connect(process.env.MONGODB || '', {
 // }
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://careplantfront.portefolio.avaulleemanonportefolio.fr'] // Permet uniquement les requêtes depuis localhost:3000 et ton domaine
+  origin: ['http://localhost:3000', 'careplantfront.portefolio.avaulleemanonportefolio.fr'] // Permet uniquement les requêtes depuis localhost:3000 et ton domaine
 }));
 
 // Routes

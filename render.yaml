@@ -8,14 +8,3 @@ services:
       - key: PORT
         value: 10000
     plan: free
-
-  - type: web
-    name: careplant-frontend
-    env: docker
-    dockerfilePath: ./frontend/Dockerfile
-    buildCommand: npm run build
-
-    envVars:
-      - key: PORT
-        value: 3000
-    plan: free

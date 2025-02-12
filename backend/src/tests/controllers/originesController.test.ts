@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { getAllOrigines, getOrigineById } from '../../controllers/herbier/caracteristiques/origineController';
-import OrigineModel from '../../models/herbier/caracteristiques/origineModel';
+import OrigineModel from '../../models/herbier/caracteristiques/Autre/origineModel';
 
 // Mock du modèle Mongoose
 jest.mock('../../models/origineModel', () => ({

@@ -69,6 +69,14 @@ export const createBesoin = async (req: Request, res: Response): Promise<void> =
            return;
         }
         
+
+        const existingBesoin = await BesoinModel.findOne({ idsExposition, idsDiffusionLumiere, idTauxHumidite, idsArrosages });
+
+        if (existingBesoin) {
+            res.status(409).json({ message: "Un besoin avec ce nom existe déjà." });
+            return;
+        }
+
         const nouveauBesoin = new BesoinModel({idsExposition, idsDiffusionLumiere, idTauxHumidite, idsArrosages, tempMin, tempMax, idsAstuce});
         const saveBesoin  = await nouveauBesoin.save();
 
@@ -89,11 +97,67 @@ export const createBesoin = async (req: Request, res: Response): Promise<void> =
 }
 
 
+// Mettre à jour un besoin par ID
+export const updateBesoin = async (req: Request, res: Response): Promise<void> => {
+    const { id } = req.params;
+    const { nom, description } = req.body;
+
+    try {
+        const updatedBesoin = await BesoinModel.findByIdAndUpdate(id, { nom, description }, { new: true });
+
+        if (!updatedBesoin) {
+            res.status(404).json({ message: "Besoin non trouvé" });
+            return;
+        }
+
+        res.status(200).json(updatedBesoin);
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            if (error.name === 'MongoNetworkError') {
+                res.status(500).json({ message: 'Erreur de connexion à la base de données' });
+            } else {
+                res.status(500).json({ message: "Erreur lors de la mise à jour du besoin" });
+            }
+        } else {
+            res.status(500).json({ message: "Erreur inconnue lors de la mise à jour du besoin" });
+        }
+    }
+};
+
+// Supprimer un besoin par ID
+export const deleteBesoin = async (req: Request, res: Response): Promise<void> => {
+    const { id } = req.params;
+
+    try {
+        const besoin = await BesoinModel.findByIdAndDelete(id);
+
+        if (!besoin) {
+            res.status(404).json({ message: "Besoin non trouvé" });
+            return;
+        }
+
+        res.status(200).json({ message: "Besoin supprimé avec succès" });
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            if (error.name === 'MongoNetworkError') {
+                res.status(500).json({ message: 'Erreur de connexion à la base de données' });
+            } else {
+                res.status(500).json({ message: "Erreur lors de la suppression du besoin" });
+            }
+        } else {
+            res.status(500).json({ message: "Erreur inconnue lors de la suppression du besoin" });
+        }
+    }
+};
+
+
 
 const besoinController = {
     getAllBesoins,
     getBesoinById,
-    createBesoin
+    createBesoin,
+    updateBesoin,
+    deleteBesoin
 };
 
 export default besoinController;

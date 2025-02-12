@@ -67,9 +67,9 @@ export const getPlanteById = async (req: Request, res: Response): Promise<void> 
 }
 
 
-const ParasiteController = {
+const ParasiteConhtroller = {
     getAllPlantes,
     getPlanteById
 };
 
-export default ParasiteController;
+export default ParasiteConhtroller;
